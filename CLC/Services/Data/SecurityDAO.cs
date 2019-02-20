@@ -36,7 +36,7 @@ namespace CLC.Services.Data
 
         public Boolean register(UserModel user)
         {
-            SqlCommand command = new SqlCommand("INSERT INTO [Users] ([ID], [USERNAME], [PASSWORD], [FIRSTNAME], [LASTNAME], [SEX], [AGE], [STATE], [EMAIL], [ROLE]) VALUES (NULL, @user, @pass, @fname, @lname, @sex, @age, @state, @email, 0");
+            SqlCommand command = new SqlCommand("INSERT INTO [Users] ([USERNAME], [PASSWORD], [FIRSTNAME], [LASTNAME], [SEX], [AGE], [STATE], [EMAIL], [ROLE]) VALUES (@user, @pass, @fname, @lname, @sex, @age, @state, @email, 0)", connection);
             command.Parameters.AddWithValue("@user", user.Username);
             command.Parameters.AddWithValue("@pass", user.Password);
             command.Parameters.AddWithValue("@fname", user.Firstname);

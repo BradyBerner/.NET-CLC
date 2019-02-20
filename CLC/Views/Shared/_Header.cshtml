@@ -1,0 +1,29 @@
+﻿<div style="margin-bottom:10px;">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </li>
+                @if (Session["principal"] == null)
+                {
+                    <li class="nav-item">
+                        @Html.ActionLink("Login", "Index", "Login", new { area = "" }, new { @class = "navbar-brand" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Register", "Index", "Register", new { area = "" }, new { @class = "navbar-brand" })
+                    </li>
+                }
+                else
+                {
+                    <li class="nav-item">
+                        @Html.ActionLink("Minesweeper", "Index", "Minesweeper", new { area = ""}, new { @class = "navbar-brand" })
+                    </li>
+                }
+            </ul>
+        </div>
+    </nav>
+</div>

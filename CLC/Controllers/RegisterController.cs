@@ -14,22 +14,26 @@ namespace CLC.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            return View();
+            return View("Register");
         }
 
         [HttpPost]
         public ActionResult Register(UserModel user)
         {
+            if (!ModelState.IsValid) {
+                return View("Register");
+            }
+
             SecurityService service = new SecurityService();
 
             bool result = service.register(user);
 
             if (result)
             {
-                return View();
+                return View("Login");
             } else
             {
-                return View();
+                return View("Register");
             }
         }
     }

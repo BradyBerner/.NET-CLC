@@ -1,0 +1,26 @@
+﻿@model CLC.Models.Cell[,]
+
+@{
+    ViewBag.Title = "Minesweeper";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Click", "Minesweeper"))
+{
+    for(int y = 0; y < 9; y++)
+    {
+        for(int x = 0; x < 9; x++)
+        {
+            <button type="submit" name="cell" value="@Model[x, y].Row.ToString(),@Model[x, y].Col.ToString()">
+                @if(@Model[x, y].Revealed)
+                {
+                    <img src="@Url.Content("~/Images/1.png")" />
+                } else
+                {
+                    <img src="@Url.Content("~/Images/flag.png")" />
+                }
+            </button>
+        }
+        <br/>
+    }
+}
