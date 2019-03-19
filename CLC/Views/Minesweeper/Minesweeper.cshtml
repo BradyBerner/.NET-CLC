@@ -5,22 +5,20 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<div align="center" style="margin-top:30px;">
 @using (Html.BeginForm("Click", "Minesweeper"))
 {
-    for(int y = 0; y < 9; y++)
-    {
-        for(int x = 0; x < 9; x++)
-        {
-            <button type="submit" name="cell" value="@Model[x, y].Row.ToString(),@Model[x, y].Col.ToString()">
-                @if(@Model[x, y].Revealed)
-                {
+    for(int y = 0; y < 9; y++){
+        for(int x = 0; x < 9; x++){
+            <button type="submit" name="cell" value="@Model[x, y].Col.ToString(),@Model[x, y].Row.ToString()">
+                @if(@Model[x, y].Revealed){
                     <img src="@Url.Content("~/Images/1.png")" />
-                } else
-                {
+                } else {
                     <img src="@Url.Content("~/Images/flag.png")" />
                 }
             </button>
         }
         <br/>
     }
-}
+ }
+</div>
