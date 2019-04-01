@@ -1,0 +1,25 @@
+﻿@model CLC.Models.Cell
+@{
+    AjaxOptions ajaxOptions = new AjaxOptions
+    {
+        HttpMethod = "POST",
+        OnSuccess = "updateBoard"
+    };
+}
+
+@Html.Raw("<div id=\"cell")@Model.ToString()@Html.Raw("\">")
+    @using (Ajax.BeginForm("Click", "Minesweeper", ajaxOptions, new { id = "myform" + @Model.ToString() }))
+    {
+        @Html.AntiForgeryToken();
+        @Html.Hidden("cell", @Model.ToString())
+        <button type="submit">
+            @if (@Model.Revealed)
+            {
+                <img src="@Url.Content("~/Images/1.png")"/>
+            }
+            else { 
+                <img src="@Url.Content("~/Images/flag.png")"/>
+            }
+        </button>
+    }
+@Html.Raw("</div>")

@@ -1,0 +1,13 @@
+﻿@model CLC.Models.Cell[,]
+
+<table>
+    @for (int y = 0; y < 9; y++)
+    {
+        <tr>
+            @for (int x = 0; x < 9; x++)
+            {
+                <td width="30" height="30" align="center">@Html.Partial("_Cell", @Model[x, y])</td>
+            }
+        </tr>
+    }
+</table>

@@ -1,8 +1,5 @@
 ﻿using CLC.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace CLC.Controllers
@@ -12,7 +9,9 @@ namespace CLC.Controllers
         private static Cell[,] grid;
         private static int size;
 
-            // GET: Minesweeper
+        public Cell[,] Grid { get => grid; }
+
+        [HttpGet]
         public ActionResult Index()
         {
             size = 9;
@@ -26,16 +25,23 @@ namespace CLC.Controllers
                 }
             }
 
-            return View("Minesweeper", grid);
+            return View("Minesweeper");
         }
         
+        [HttpPost]
         public ActionResult Click(string cell)
         {
             string[] s = cell.Split(',');
 
             grid[Int32.Parse(s[0]), Int32.Parse(s[1])].Revealed = !grid[Int32.Parse(s[0]), Int32.Parse(s[1])].Revealed;
 
-            return View("Minesweeper", grid);
+            return PartialView("_Minesweeper", grid);
+        }
+
+        [OutputCache(Duration = 0)]
+        public ActionResult getBoard()
+        {
+            return PartialView("_Minesweeper", grid);
         }
     }
 }

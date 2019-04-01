@@ -42,6 +42,7 @@ namespace CLC.Models
         internal int Surrounding { get => surrounding; }
         internal bool Flagged { get => flagged; }
         public bool Revealed { get => revealed; set => revealed = value; }
+        public string Image { get => image; }
 
         //Method that takes another cell as an argument and checks to see if the other cell and the calling cell are located in the same place
         internal bool isSame(Cell c)
@@ -99,6 +100,12 @@ namespace CLC.Models
             }
 
             flagged = !flagged;
+        }
+
+        override
+        public string ToString()
+        {
+            return Col.ToString() + "," + Row.ToString();
         }
     }
 }
