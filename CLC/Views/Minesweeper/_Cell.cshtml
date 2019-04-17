@@ -7,18 +7,19 @@
     };
 }
 
-@Html.Raw("<div id=\"cell")@Model.ToString()@Html.Raw("\">")
-    @using (Ajax.BeginForm("Click", "Minesweeper", ajaxOptions, new { id = "myform" + @Model.ToString() }))
+@Html.Raw("<div id=\"cell")@Model.toString()@Html.Raw("\">")
+    @using (Ajax.BeginForm("Click", "Minesweeper", ajaxOptions, new { id = "myform" + @Model.toString() }))
     {
         @Html.AntiForgeryToken();
-        @Html.Hidden("cell", @Model.ToString())
-        <button type="submit">
-            @if (@Model.Revealed)
+        @Html.Hidden("cell", @Model.toString())
+        <button id="@Model.toString()" type="submit" oncontextmenu="rightClick(@Model.toString())">
+            @if (Model.Revealed || Model.Flagged)
             {
-                <img src="@Url.Content("~/Images/1.png")"/>
+                <img src="@Url.Content("~/Images/" + Model.Image)" />
             }
-            else { 
-                <img src="@Url.Content("~/Images/flag.png")"/>
+            else
+            {
+                <img src="@Url.Content("~/Images/static.png")" />
             }
         </button>
     }

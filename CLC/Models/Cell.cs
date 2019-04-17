@@ -5,12 +5,9 @@
  * This is my own work
 */
 
-using System.Drawing;
-using System.Web.UI.WebControls;
-
 namespace CLC.Models
 {
-    public class Cell : Button
+    public class Cell
     {
         //bool that denotes whether the cell is a mine or not
         private bool live = false;
@@ -21,7 +18,7 @@ namespace CLC.Models
         //int that represents the number of mines in the immediate vicinity of the cell
         private int surrounding = 0;
         //string that stores the filepath for the image to be displayed on the cell
-        private string image;
+        private string image = "clicked.png";
         //bool that denotes whether the cell has been flagged or not
         private bool flagged;
         private bool revealed = false;
@@ -31,18 +28,16 @@ namespace CLC.Models
         {
             this.col = col;
             this.row = row;
-            Height = 50;
-            Width = 50;
         }
 
         //Getters for all properties of the cell aside from the image string
-        internal bool Live { get => live; }
+        public bool Live { get => live; }
         public int Row { get => row; }
         public int Col { get => col; }
-        internal int Surrounding { get => surrounding; }
-        internal bool Flagged { get => flagged; }
-        public bool Revealed { get => revealed; set => revealed = value; }
+        public int Surrounding { get => surrounding; }
         public string Image { get => image; }
+        public bool Flagged { get => flagged; }
+        public bool Revealed { get => revealed; }
 
         //Method that takes another cell as an argument and checks to see if the other cell and the calling cell are located in the same place
         internal bool isSame(Cell c)
@@ -78,12 +73,12 @@ namespace CLC.Models
         {
             if (!flagged)
             {
-                Enabled = false;
-                BackColor = Color.DarkGray;
-                if (image != null)
-                {
-                    //TODO:: Add in image mapping to the button
-                }
+                revealed = true;
+                //if (image != null)
+                //{
+                //    Bitmap img = new Bitmap(image);
+                //    BackgroundImage = new Bitmap(img, Width, Height);
+                //}
             }
         }
 
@@ -92,20 +87,19 @@ namespace CLC.Models
         {
             if (flagged)
             {
-                //TODO:: Remove image here
+                image = "static.png";
             }
             else
             {
-                //TODO:: Set background image to flag image
+                image = "flag.png";
             }
 
             flagged = !flagged;
         }
 
-        override
-        public string ToString()
+        public string toString()
         {
-            return Col.ToString() + "," + Row.ToString();
+            return col + "," + row;
         }
     }
 }

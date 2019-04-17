@@ -5,11 +5,19 @@
 
 <script>
     function updateBoard() {
-        $('#board').load("getBoard");
+        $('#board').load('@Url.Action("getBoard", "Minesweeper")');
     }
     $(document).ready(function () {
-        $('#board').load("getBoard");
+        updateBoard();
+
+        document.oncontextmenu = function () {
+            return false;
+        };
     })
+    function rightClick() {
+        $.post('@Url.Action("RightClick", "Minesweeper")', { col: arguments[0], row: arguments[1] });
+        updateBoard();
+    }
 </script>
 
 <div id="board" align="center"></div>

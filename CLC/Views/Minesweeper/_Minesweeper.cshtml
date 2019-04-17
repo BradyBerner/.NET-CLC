@@ -1,12 +1,12 @@
-﻿@model CLC.Models.Cell[,]
+﻿@model GameService
 
 <table>
-    @for (int y = 0; y < 9; y++)
+    @for (int y = 0; y < @Model.Size; y++)
     {
         <tr>
-            @for (int x = 0; x < 9; x++)
+            @for (int x = 0; x < @Model.Size; x++)
             {
-                <td width="30" height="30" align="center">@Html.Partial("_Cell", @Model[x, y])</td>
+                <td width="30" height="30" align="center">@Html.Partial("_Cell", Model.Array[x, y])</td>
             }
         </tr>
     }
