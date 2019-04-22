@@ -18,6 +18,7 @@ namespace CLC.Models
         //int that represents the number of mines in the immediate vicinity of the cell
         private int surrounding = 0;
         //string that stores the filepath for the image to be displayed on the cell
+        private string originalImage = "static.png";
         private string image = "clicked.png";
         //bool that denotes whether the cell has been flagged or not
         private bool flagged;
@@ -57,6 +58,7 @@ namespace CLC.Models
             {
                 surrounding++;
                 image = surrounding.ToString() + ".png";
+                originalImage = surrounding.ToString() + ".png";
             }
         }
 
@@ -65,7 +67,7 @@ namespace CLC.Models
         {
             live = true;
             image = "mine.png";
-            //Text = "M";
+            originalImage = "mine.png";
         }
 
         //Method that reveals the cell by displaying the appropriate image unless the cell is flagged
@@ -87,7 +89,7 @@ namespace CLC.Models
         {
             if (flagged)
             {
-                image = "static.png";
+                image = originalImage;
             }
             else
             {

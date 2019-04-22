@@ -46,5 +46,26 @@ namespace CLC.Controllers
         {
             return PartialView("_Minesweeper", game);
         }
+
+        [HttpPost]
+        [OutputCache(Duration = 0)]
+        public ActionResult save()
+        {
+            Session.Add("game", game);
+
+            return View("Minesweeper");
+        }
+
+        [HttpPost]
+        [OutputCache(Duration = 0)]
+        public ActionResult load()
+        {
+            if(Session["game"] != null)
+            {
+                game = (GameService)Session["game"];
+            }
+
+            return View("Minesweeper");
+        }
     }
 }

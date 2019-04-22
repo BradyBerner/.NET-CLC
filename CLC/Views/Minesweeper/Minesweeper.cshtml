@@ -20,4 +20,13 @@
     }
 </script>
 
+@using (Html.BeginForm("save", "Minesweeper", FormMethod.Post))
+{
+    <Button type="submit" value="Save" onsubmit="updateBoard">Save</Button>
+}
+@using (Html.BeginForm("load", "Minesweeper", FormMethod.Post))
+{
+    <Button type="submit" value="Load" onsubmit="updateBoard">Load</Button>
+}
+
 <div id="board" align="center"></div>
